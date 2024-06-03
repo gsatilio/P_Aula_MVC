@@ -1,8 +1,21 @@
 ﻿using Controllers;
-using Services;
 using Models;
-using Repositories;
-using System.Security.Cryptography;
+
+/*
+Insurance insurance = new Insurance()
+{
+    Description = "Seguro TOP"
+};
+*/
+/*
+if (ReturnInsuranceController().Insert(insurance))
+{
+    Console.WriteLine("Inserido com sucesso");
+} else
+{
+    Console.WriteLine("Erro de insercao");
+}
+*/
 
 int opt = -1;
 
@@ -55,11 +68,20 @@ do
 } while (opt != 0);
 
 
+InsuranceController ReturnInsuranceController()
+{
+    //InsuranceController insurance = new InsuranceController(new InsuranceService(new InsuranceRepository()));
+    InsuranceController insurance = new InsuranceController();
+    return insurance;
+}
+
 CarController ReturnCarController()
 {
-    CarController car = new CarController(new CarService(new CarRepository()));
+    //CarController car = new CarController(new CarService(new CarRepository()));
+    CarController car = new CarController();
     return car;
 }
+
 
 void InsertCar(string carname, string carcolor, int caryear)
 {
@@ -67,22 +89,26 @@ void InsertCar(string carname, string carcolor, int caryear)
     {
         Name = carname,
         Color = carcolor,
-        Year = caryear
+        Year = caryear,
+        Insurance = new Insurance {Description = "NovoSeg"}
     };
+
     if (ReturnCarController().Insert(car))
         Console.WriteLine("Carro registrado");
     else Console.WriteLine("Carro nao registrado");
-}
+};
+
+
 
 void UpdateCar()
 {
-    string carname, carcolor; 
+    string carname, carcolor;
     int caryear;
     Console.WriteLine("Informe o Id do carro desejado:");
     int id = int.Parse(Console.ReadLine());
-    
+
     Car? car = ReturnCarController().Get(id);
-    
+
     Console.WriteLine("Informe o nome do carro desejado:");
     carname = Console.ReadLine();
     Console.WriteLine("Informe a cor do carro desejado:");

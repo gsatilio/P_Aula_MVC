@@ -6,10 +6,10 @@ namespace Services
     public class CarService
     {
         private CarRepository _carRepository;
-        public CarService(CarRepository repository)
+        public CarService()
         {
-            _carRepository = repository;
-            //_carRepository = new CarRepository();
+            //_carRepository = repository;
+            _carRepository = new CarRepository();
         }
         public bool Insert(Car car)
         {

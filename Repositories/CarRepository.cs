@@ -22,6 +22,7 @@ namespace Repositories
                 cmd.Parameters.AddWithValue("@Name", car.Name);
                 cmd.Parameters.AddWithValue("@Color", car.Color);
                 cmd.Parameters.AddWithValue("@Year", car.Year);
+                cmd.Parameters.AddWithValue("@InsuranceId", car.Insurance.Id);
                 cmd.ExecuteNonQuery();
                 result = true;
             }

@@ -6,13 +6,15 @@ namespace Controllers
     public class CarController
     {
         private CarService _carService;
-        public CarController(CarService carService)
+        private InsuranceService _insuranceService;
+        public CarController()
         {
-            _carService = carService;
+            _carService = new CarService();
+            _insuranceService = new InsuranceService();
         }
         public bool Insert(Car car)
         {
-            Console.WriteLine("Camada Controller");
+            car.Insurance.Id = _insuranceService.Insert(car.Insurance);
             return _carService.Insert(car);
         }
         public bool Update(Car car)
